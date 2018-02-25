@@ -1,0 +1,12 @@
+.c3-axis-y text,
+.c3-axis-x text,
+.c3-legend-item text {
+  fill: aquamarine;
+}
+
+.c3-tooltip th {
+  background-color: #343c3d
+}
+.c3-tooltip td {
+  background-color: #1f2424
+}

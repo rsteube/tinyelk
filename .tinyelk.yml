@@ -1,0 +1,17 @@
+grok:
+  patterns:
+    base:
+      timestamp: "%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{TIME}"
+      thread: "[ A-Za-z0-9-]+"
+      class: "[A-Za-z0-9#_]+"
+      msg: ".*"
+    line:
+      javalog: "%{timestamp:_timestamp}  %{LOGLEVEL:_level} %{NUMBER:pid} --- \\[%{thread:thread}\\] [A-Za-z0-9.]*\\.(%{class:class})\\s*:\\s+%{msg:msg}"
+    multiline:
+      notimestamp: "[^(%{timestamp}).*]"
+  drop:
+    - "BASE10NUM"
+
+jq:
+  exceptions: "select(.exception != null)"
+  loglevel: "select(.level == {{level}})"
