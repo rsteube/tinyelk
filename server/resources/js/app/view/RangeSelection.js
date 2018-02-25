@@ -1,19 +1,11 @@
 define(['c3', 'd3', 'app/models/Log'], function(c3, d3, Log) {
   return {
     view: function() {
-      var color = {
-        'trace': '',
-        'debug': '',
-        'info': 'has-text-info',
-        'warn': 'has-text-warning',
-        'error': 'has-text-danger'
-      }
-
       return m('div', {
         id: 'rangeSelection'
       })
     },
-    oncreate: function(vnode) {
+    oncreate: function() {
       var chart = c3.generate({
         bindto: '#rangeSelection',
         color: {

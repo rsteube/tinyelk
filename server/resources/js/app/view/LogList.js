@@ -45,7 +45,6 @@ define(['app/models/Log'], function(Log) {
               m('td', {
                 class: 'has-text-centered has-text-weight-bold ' + color[log._level.toLowerCase()]
               }, log._level[0]), m('td', log._timestamp),
-
               m('td', [log.msg, (vnode.state.activeEntry == log._timestamp ? m(LogDetail, log) : null)])
             ])
           })
