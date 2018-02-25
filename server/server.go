@@ -21,14 +21,10 @@ func Serve(config *Config, cache *db.Cache) {
 		cache:  cache,
 	}
 
-	box := packr.NewBox("./resources")
+	http.Handle("/", http.FileServer(packr.NewBox("./resources")))
+	http.HandleFunc("/jq", server.jq)
 
-	http.Handle("/", http.FileServer(box))
-	http.HandleFunc("/jq", server.jq)        // set router
-	err := http.ListenAndServe(":7318", nil) // port T(iny)ELK
-	if err != nil {
-		log.Fatal("ListenAndServe: ", err)
-	}
+	log.Fatal(http.ListenAndServe(":7318", nil)) // port T(iny)ELK
 }
 
 func (server *Server) jq(w http.ResponseWriter, r *http.Request) {
