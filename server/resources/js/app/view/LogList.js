@@ -36,6 +36,8 @@ define(['app/models/Log'], function(Log) {
         ),
         m('tbody',
           Log.list.map(function(log) {
+            if(!Log.visible.has(log._level.toLowerCase())) { return null }
+
             return m('tr', {
               onclick: function() {
                 vnode.state.activeEntry = (vnode.state.activeEntry == log._timestamp ? "" : log._timestamp);

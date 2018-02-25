@@ -28,6 +28,11 @@ define(['c3', 'd3', 'app/models/Log'], function(c3, d3, Log) {
         },
         subchart: {
           show: true
+        },
+        legend: {
+          item: {
+            onclick: function(id) { chart.toggle(id); Log.toggle(id); m.redraw() }
+          }
         }
       })
     }
